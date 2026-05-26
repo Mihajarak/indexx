@@ -1,0 +1,489 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --noir:#0a0a0a;--noir2:#111;--noir3:#1a1a1a;--noir4:#222;
+  --or:#c9a84c;--or2:#b8962e;--or3:#e8c96a;--or-pale:rgba(201,168,76,0.12);
+  --blanc:#faf8f4;--gris:#888;--gris2:#555;
+}
+body{font-family:'Georgia',serif;background:var(--noir);color:var(--blanc);}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.97);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 2rem;height:60px;
+  border-bottom:0.5px solid rgba(201,168,76,0.25);
+}
+.nav-logo{
+  color:var(--or);font-size:1.2rem;letter-spacing:.15em;
+  text-transform:uppercase;font-style:italic;
+}
+.nav-links{display:flex;gap:1.8rem;align-items:center;}
+.nav-links a{
+  color:rgba(250,248,244,0.6);font-size:0.75rem;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;
+  font-family:'Helvetica Neue',sans-serif;
+  transition:color .2s;cursor:pointer;
+}
+.nav-links a:hover{color:var(--or);}
+.nav-cta{
+  background:transparent;border:0.5px solid var(--or);
+  color:var(--or);font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 18px;cursor:pointer;transition:all .2s;
+  font-family:'Helvetica Neue',sans-serif;
+}
+.nav-cta:hover{background:var(--or);color:var(--noir);}
+
+.hero{
+  min-height:520px;
+  background:linear-gradient(160deg,#0a0a0a 0%,#111 40%,#1a1510 100%);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;
+  padding:4rem 2rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,0.08) 0%,transparent 65%);
+}
+.hero-badge{
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.65rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--or);border:0.5px solid rgba(201,168,76,0.4);
+  padding:5px 18px;border-radius:20px;margin-bottom:1.5rem;
+  display:inline-block;
+}
+.hero h1{
+  font-size:clamp(2.2rem,6vw,4rem);font-weight:400;
+  line-height:1.1;margin-bottom:1rem;letter-spacing:.02em;
+}
+.hero h1 em{color:var(--or);font-style:italic;}
+.hero p{
+  font-family:'Helvetica Neue',sans-serif;
+  color:rgba(250,248,244,0.55);font-size:0.9rem;
+  line-height:1.8;max-width:500px;margin:0 auto 2rem;letter-spacing:.02em;
+}
+.hero-avatar-wrap{
+  width:120px;height:120px;border-radius:50%;
+  border:1.5px solid var(--or);padding:4px;
+  margin:0 auto 1.5rem;
+  background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-avatar{
+  width:100%;height:100%;border-radius:50%;
+  object-fit:cover;object-position:top;
+  background:var(--noir3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;color:var(--or);
+  overflow:hidden;
+}
+.hero-divider{
+  width:60px;height:0.5px;background:var(--or);
+  margin:1.5rem auto;opacity:0.6;
+}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-gold{
+  background:var(--or);color:var(--noir);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.75rem;letter-spacing:.12em;text-transform:uppercase;
+  border:none;padding:12px 28px;cursor:pointer;transition:background .2s;
+  font-weight:500;
+}
+.btn-gold:hover{background:var(--or3);}
+.btn-ghost{
+  background:transparent;color:var(--or);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.75rem;letter-spacing:.12em;text-transform:uppercase;
+  border:0.5px solid rgba(201,168,76,0.5);padding:12px 28px;cursor:pointer;
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--or);background:var(--or-pale);}
+
+section{padding:3.5rem 2rem;}
+.section-eyebrow{
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.62rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--or);margin-bottom:.5rem;
+}
+.section-title{
+  font-size:1.8rem;font-weight:400;letter-spacing:.03em;
+  margin-bottom:.5rem;
+}
+.section-sub{
+  font-family:'Helvetica Neue',sans-serif;
+  color:var(--gris);font-size:0.82rem;line-height:1.7;
+  max-width:480px;margin-bottom:2rem;
+}
+.gold-line{width:40px;height:0.5px;background:var(--or);opacity:.7;margin:1rem 0 2rem;}
+
+.services-section{background:var(--noir2);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;}
+.service-card{
+  background:var(--noir3);padding:2rem 1.5rem;
+  border:0.5px solid rgba(201,168,76,0.1);
+  transition:border-color .3s;position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:1px;background:var(--or);opacity:0;transition:opacity .3s;
+}
+.service-card:hover{border-color:rgba(201,168,76,0.35);}
+.service-card:hover::before{opacity:1;}
+.service-num{
+  font-size:2rem;color:rgba(201,168,76,0.15);
+  font-style:italic;margin-bottom:.8rem;
+}
+.service-title{font-size:1rem;letter-spacing:.05em;margin-bottom:.5rem;color:var(--blanc);}
+.service-desc{
+  font-family:'Helvetica Neue',sans-serif;
+  color:var(--gris);font-size:0.78rem;line-height:1.6;
+}
+.service-tag{
+  display:inline-block;margin-top:.8rem;
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.65rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--or);border:0.5px solid rgba(201,168,76,0.3);
+  padding:3px 10px;
+}
+
+.gallery-section{background:var(--noir);}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:auto;
+  gap:6px;
+}
+.gal-item{
+  background:var(--noir3);border:0.5px solid rgba(201,168,76,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;color:rgba(201,168,76,0.2);
+  position:relative;overflow:hidden;
+}
+.gal-item:nth-child(1){grid-column:1/3;height:200px;}
+.gal-item:nth-child(2){height:200px;}
+.gal-item:nth-child(3){height:150px;}
+.gal-item:nth-child(4){height:150px;}
+.gal-item:nth-child(5){grid-column:3/4;grid-row:2/4;height:308px;}
+.gal-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:8px 12px;
+  background:linear-gradient(transparent,rgba(0,0,0,0.85));
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(201,168,76,0.85);
+}
+
+.about-section{background:var(--noir2);display:flex;align-items:center;gap:3rem;flex-wrap:wrap;}
+.about-photo{
+  width:200px;height:250px;flex-shrink:0;
+  background:var(--noir3);border:0.5px solid rgba(201,168,76,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:rgba(201,168,76,0.25);
+  overflow:hidden;
+}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.about-text{flex:1;min-width:220px;}
+.about-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;}
+.stat-num{font-size:1.8rem;color:var(--or);font-style:italic;}
+.stat-lab{font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;color:var(--gris);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+
+.testimonials{background:var(--noir3);}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.testi-card{
+  background:var(--noir2);border:0.5px solid rgba(201,168,76,0.12);
+  padding:1.4rem;position:relative;
+}
+.testi-quote{
+  font-size:1.8rem;color:rgba(201,168,76,0.2);
+  line-height:1;margin-bottom:.6rem;
+  font-style:italic;
+}
+.testi-text{
+  font-size:0.82rem;line-height:1.65;color:rgba(250,248,244,0.75);
+  margin-bottom:1rem;font-style:italic;
+}
+.testi-name{
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--or);
+}
+.testi-event{
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.68rem;color:var(--gris);margin-top:2px;
+}
+
+.contact-section{
+  background:var(--noir);
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+  flex-wrap:wrap;
+}
+@media(max-width:600px){.contact-section{grid-template-columns:1fr;}}
+.contact-info{}
+.contact-item{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:1rem;
+  font-family:'Helvetica Neue',sans-serif;font-size:0.83rem;
+}
+.contact-icon{
+  width:38px;height:38px;border:0.5px solid rgba(201,168,76,0.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--or);font-size:1rem;flex-shrink:0;
+}
+.contact-label{color:var(--gris);font-size:0.68rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1px;}
+.contact-val{color:var(--blanc);font-size:0.82rem;}
+.contact-val a{color:var(--or);text-decoration:none;}
+.social-row{display:flex;gap:10px;margin-top:1.5rem;}
+.social-btn{
+  width:40px;height:40px;border:0.5px solid rgba(201,168,76,0.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--or);font-size:0.9rem;font-family:'Helvetica Neue',sans-serif;
+  text-decoration:none;transition:all .2s;letter-spacing:.05em;
+  font-size:0.68rem;
+}
+.social-btn:hover{background:var(--or-pale);border-color:var(--or);}
+.contact-form{}
+.form-field{margin-bottom:14px;}
+.form-field label{
+  display:block;font-family:'Helvetica Neue',sans-serif;
+  font-size:0.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gris);margin-bottom:6px;
+}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;background:var(--noir3);
+  border:0.5px solid rgba(201,168,76,0.2);
+  color:var(--blanc);font-size:0.82rem;
+  padding:10px 12px;font-family:'Helvetica Neue',sans-serif;
+  resize:none;outline:none;transition:border-color .2s;
+  -webkit-appearance:none;
+}
+.form-field input:focus,.form-field select,.form-field textarea:focus{
+  border-color:rgba(201,168,76,0.5);
+}
+.form-field select option{background:var(--noir3);}
+
+footer{
+  background:var(--noir2);
+  border-top:0.5px solid rgba(201,168,76,0.15);
+  text-align:center;padding:1.2rem;
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:0.72rem;color:var(--gris);letter-spacing:.06em;
+}
+footer span{color:var(--or);}
+</style>
+
+<nav>
+  <div class="nav-logo">Lumière Studio</div>
+  <div class="nav-links">
+    <a onclick="go('services')">Services</a>
+    <a onclick="go('gallery')">Galerie</a>
+    <a onclick="go('about')">À propos</a>
+    <a onclick="go('contact')">Contact</a>
+    <button class="nav-cta" onclick="go('contact')">Réserver</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-avatar-wrap">
+    <div class="hero-avatar">
+      <i class="ti ti-camera" style="font-size:2.8rem;color:var(--or);opacity:0.6;" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="hero-badge">Photographe Professionnel · Madagascar</div>
+  <h1>Chaque instant<br>devient <em>éternel</em></h1>
+  <div class="hero-divider"></div>
+  <p>Spécialiste de la photographie de mariage, d'anniversaire, d'événements et de portraits de famille. Je capture vos émotions avec élégance et précision.</p>
+  <div class="hero-cta">
+    <button class="btn-gold" onclick="go('gallery')">Voir la galerie</button>
+    <button class="btn-ghost" onclick="go('contact')">Demander un devis</button>
+  </div>
+</div>
+
+<section class="services-section" id="services">
+  <div class="section-eyebrow">Ce que je propose</div>
+  <div class="section-title">Mes spécialités</div>
+  <div class="gold-line"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Mariage</div>
+      <div class="service-desc">Couverture complète de votre journée, du préparatifs à la soirée. Reportage naturel et portraits élégants.</div>
+      <div class="service-tag">À partir de 300$</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Anniversaire</div>
+      <div class="service-desc">Célébrations intimes ou grandes fêtes, chaque moment de joie capturé avec soin et authenticité.</div>
+      <div class="service-tag">À partir de 120$</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Grands événements</div>
+      <div class="service-desc">Séminaires, galas, conférences et cérémonies officielles. Couverture professionnelle complète.</div>
+      <div class="service-tag">Sur devis</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Portrait famille</div>
+      <div class="service-desc">Séances en studio ou en extérieur pour immortaliser vos liens familiaux avec tendresse.</div>
+      <div class="service-tag">À partir de 80$</div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-eyebrow">Portfolio</div>
+  <div class="section-title">Extraits de mes œuvres</div>
+  <div class="gold-line"></div>
+  <div class="gallery-grid">
+    <div class="gal-item" style="background:linear-gradient(135deg,#1a1208,#2a1f0e);">
+      <i class="ti ti-heart" style="font-size:3rem;opacity:.18;" aria-hidden="true"></i>
+      <div class="gal-label">Mariage · Cérémonie</div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#0d1a0d,#131f13);">
+      <i class="ti ti-star" style="font-size:2rem;opacity:.18;" aria-hidden="true"></i>
+      <div class="gal-label">Famille · Portrait</div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#1a0d0d,#221212);">
+      <i class="ti ti-confetti" style="font-size:2rem;opacity:.18;" aria-hidden="true"></i>
+      <div class="gal-label">Anniversaire</div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#0d0d1a,#121222);">
+      <i class="ti ti-users" style="font-size:2rem;opacity:.18;" aria-hidden="true"></i>
+      <div class="gal-label">Événement · Gala</div>
+    </div>
+    <div class="gal-item" style="background:linear-gradient(135deg,#1a1208,#251b0a);">
+      <i class="ti ti-camera" style="font-size:2.5rem;opacity:.18;" aria-hidden="true"></i>
+      <div class="gal-label">Mariage · Couple</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1.8rem;">
+    <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.75rem;color:var(--gris);margin-bottom:1rem;letter-spacing:.05em;">
+      Envoyez votre photo et elle sera intégrée dans la galerie
+    </p>
+    <button class="btn-ghost" onclick="sendPrompt('Ajoute mes vraies photos dans la galerie du site photographe')">Personnaliser la galerie ↗</button>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-photo">
+    <i class="ti ti-user-circle" style="font-size:4rem;opacity:.25;" aria-hidden="true"></i>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow">À propos</div>
+    <div class="section-title">Votre photographe</div>
+    <div class="gold-line"></div>
+    <p class="section-sub">Passionné de photographie depuis plus de 8 ans, je me consacre à l'art de capturer les émotions authentiques lors de vos moments les plus précieux. Basé à Madagascar, j'interviens sur tout le pays et à l'international.</p>
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-lab">Mariages capturés</div>
+      </div>
+      <div>
+        <div class="stat-num">8 ans</div>
+        <div class="stat-lab">d'expérience</div>
+      </div>
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-lab">Clients satisfaits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-eyebrow">Témoignages</div>
+  <div class="section-title">Ce que disent mes clients</div>
+  <div class="gold-line"></div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Des photos magnifiques qui capturent chaque émotion de notre mariage. Un vrai artiste, discret et professionnel.</div>
+      <div class="testi-name">Miora & Haja</div>
+      <div class="testi-event">Mariage · Antananarivo</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Notre anniversaire de 50 ans magnifiquement immortalisé. Les photos sont sublimes, merci infiniment !</div>
+      <div class="testi-name">Famille Randria</div>
+      <div class="testi-event">Anniversaire · Mahajanga</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Couverture parfaite de notre gala annuel. Réactivité, talent et livraison rapide. Nous recommandons vivement.</div>
+      <div class="testi-name">Association FIVMPAMA</div>
+      <div class="testi-event">Événement · Toamasina</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <div class="section-eyebrow">Contact</div>
+    <div class="section-title">Réservez votre séance</div>
+    <div class="gold-line"></div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:votre@email.com">votre@email.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+      <div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-val">+261 XX XX XXX XX</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+      <div>
+        <div class="contact-label">Localisation</div>
+        <div class="contact-val">Mahajanga, Madagascar</div>
+      </div>
+    </div>
+    <div class="social-row">
+      <a class="social-btn" href="#" title="Facebook">FB</a>
+      <a class="social-btn" href="#" title="Instagram">IG</a>
+      <a class="social-btn" href="#" title="WhatsApp">WA</a>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="form-field">
+      <label>Votre nom</label>
+      <input type="text" placeholder="Jean Dupont" />
+    </div>
+    <div class="form-field">
+      <label>Email ou WhatsApp</label>
+      <input type="text" placeholder="vous@email.com ou +261..." />
+    </div>
+    <div class="form-field">
+      <label>Type de prestation</label>
+      <select>
+        <option>Mariage</option>
+        <option>Anniversaire</option>
+        <option>Grand événement</option>
+        <option>Portrait famille</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Date souhaitée & message</label>
+      <textarea rows="4" placeholder="Date de l'événement, lieu, vos attentes..."></textarea>
+    </div>
+    <button class="btn-gold" style="width:100%;padding:13px;" onclick="sendPrompt('Personnalise ce site avec mon vrai nom, email, WhatsApp, Facebook et Instagram')">Personnaliser mes contacts ↗</button>
+  </div>
+</section>
+
+<footer>
+  <span>Lumière Studio</span> · Photographe Professionnel · Madagascar &copy; 2025
+</footer>
+
+<script>
+function go(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+</script>
